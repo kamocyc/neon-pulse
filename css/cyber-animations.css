@@ -1,0 +1,359 @@
+/* Cyberpunk Animation Effects */
+
+/* Grid Pulse Animation */
+@keyframes grid-pulse {
+    0% {
+        background-size: 40px 40px;
+        opacity: 0.15;
+    }
+    50% {
+        background-size: 45px 45px;
+        opacity: 0.3;
+    }
+    100% {
+        background-size: 40px 40px;
+        opacity: 0.15;
+    }
+}
+
+/* Neon Flash Animation */
+@keyframes neon-flash {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 247, 255, 0.5), 0 0 20px rgba(0, 247, 255, 0.3), 0 0 30px rgba(0, 247, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(0, 247, 255, 0.8), 0 0 30px rgba(0, 247, 255, 0.5), 0 0 50px rgba(0, 247, 255, 0.3);
+    }
+}
+
+/* Text Glitch Animation */
+@keyframes text-glitch {
+    0%, 100% {
+        text-shadow: 0 0 8px var(--primary-neon);
+        transform: translateX(0);
+    }
+    25% {
+        text-shadow: -2px 0 8px var(--secondary-neon), 2px 0 8px var(--primary-neon);
+        transform: translateX(-1px);
+    }
+    50% {
+        text-shadow: 2px 0 8px var(--primary-neon), -2px 0 8px var(--secondary-neon);
+        transform: translateX(1px);
+    }
+    75% {
+        text-shadow: -2px 0 8px var(--primary-neon), 2px 0 8px var(--secondary-neon);
+        transform: translateX(-1px);
+    }
+}
+
+/* Scanline Animation */
+@keyframes scanlines {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+/* Border Glow Animation */
+@keyframes border-glow {
+    0%, 100% {
+        border-color: var(--primary-neon);
+        box-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+    }
+    50% {
+        border-color: var(--secondary-neon);
+        box-shadow: 0 0 20px rgba(225, 0, 255, 0.5);
+    }
+}
+
+/* Glitch Overlay for the entire page */
+.glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    mix-blend-mode: screen;
+}
+
+.glitch-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 247, 255, 0.1), rgba(225, 0, 255, 0.1));
+    background-size: 100% 2px;
+    animation: scanlines 1s linear infinite;
+}
+
+.glitch-overlay.active {
+    opacity: 1;
+}
+
+/* Transmission Animation */
+.transmission-animation * {
+    transition: all 0.5s ease !important;
+}
+
+.transmission-animation body {
+    animation: grid-pulse 1s ease-in-out !important;
+}
+
+.transmission-animation .app-header, 
+.transmission-animation .sidebar,
+.transmission-animation .content,
+.transmission-animation .trending-section,
+.transmission-animation .who-to-follow,
+.transmission-animation .tweet {
+    animation: neon-flash 1s ease-in-out !important;
+}
+
+.transmission-animation .logo,
+.transmission-animation h3,
+.transmission-animation .tweet-author {
+    animation: text-glitch 0.5s ease-in-out 3 !important;
+}
+
+.transmission-animation .user-avatar img, 
+.transmission-animation .compose-avatar img,
+.transmission-animation .tweet-avatar img,
+.transmission-animation .suggestion-avatar img {
+    animation: border-glow 1s ease-in-out !important;
+}
+
+/* Data stream effect */
+.data-stream {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.data-stream::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(0deg, transparent 0%, var(--primary-neon) 50%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, var(--secondary-neon) 50%, transparent 100%);
+    background-size: 3px 100%, 100% 3px;
+    background-position: 0 0;
+    background-repeat: repeat;
+    opacity: 0.2;
+    animation: data-flow 2s linear infinite;
+}
+
+@keyframes data-flow {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: 0 100%, 100% 0;
+    }
+}
+
+.data-stream.active {
+    opacity: 1;
+}
+
+/* Cybernetic interface hacking effect */
+.cyber-hack {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.cyber-hack-text {
+    position: absolute;
+    color: var(--primary-neon);
+    text-shadow: 0 0 5px var(--primary-neon);
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    opacity: 0;
+    white-space: nowrap;
+    transform: translateX(-50%); /* Center the text at the position */
+}
+
+.cyber-hack.active .cyber-hack-text {
+    animation: hack-text-appear 3s linear forwards;
+}
+
+@keyframes hack-text-appear {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.cyber-hack.active {
+    opacity: 1;
+}
+
+/* Neon pulse for the new tweet */
+.pulse-border {
+    position: relative;
+}
+
+.pulse-border::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--primary-neon);
+    border-radius: inherit;
+    animation: pulse-border 1.5s ease-out;
+    pointer-events: none;
+    opacity: 0;
+}
+
+@keyframes pulse-border {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Digital distortion effect for transmit button */
+.digital-distortion {
+    position: relative;
+    overflow: hidden;
+}
+
+.digital-distortion::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(0, 247, 255, 0.4) 50%,
+        transparent 100%
+    );
+    transform: rotate(25deg) translateX(-100%);
+    animation: digital-scan 0.6s ease forwards;
+}
+
+@keyframes digital-scan {
+    to {
+        transform: rotate(25deg) translateX(100%);
+    }
+}
+
+/* Background pattern animation */
+.bg-pattern-animate {
+    animation: bg-pattern 1s ease-in-out;
+}
+
+@keyframes bg-pattern {
+    0% {
+        background-size: 40px 40px;
+    }
+    50% {
+        background-size: 50px 50px;
+    }
+    100% {
+        background-size: 40px 40px;
+    }
+}
+
+/* Power surge animation */
+.power-surge {
+    filter: brightness(1.5) hue-rotate(10deg);
+    transition: filter 1s ease-in-out;
+}
+
+.power-surge-reverse {
+    filter: brightness(1) hue-rotate(0deg);
+    transition: filter 1s ease-in-out;
+}
+
+/* Energy wave animation */
+.energy-wave {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 247, 255, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9996;
+}
+
+@keyframes energy-wave-pulse {
+    0% {
+        transform: scale(0);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+.energy-wave.active {
+    animation: energy-wave-pulse 1.2s ease-out forwards;
+}
+
+/* Button Ripple Effect v2 - More cyberpunk style */
+.transmit-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, var(--primary-neon), var(--secondary-neon));
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: transmit-ripple 1s ease-out forwards;
+    z-index: 999;
+    box-shadow: 0 0 15px var(--primary-neon), 0 0 25px var(--secondary-neon);
+}
+
+@keyframes transmit-ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+    }
+    100% {
+        width: 500px;
+        height: 500px;
+        opacity: 0;
+    }
+}

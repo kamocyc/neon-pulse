@@ -1,0 +1,453 @@
+/* Cyberpunk Theme */
+:root {
+    --primary-bg: #0a0a1a;
+    --secondary-bg: #121225;
+    --panel-bg: #10102c;
+    --primary-neon: #00f7ff;
+    --secondary-neon: #e100ff;
+    --text-primary: #ffffff;
+    --text-secondary: #a9a9c9;
+    --accent-purple: #9b30ff;
+    --accent-blue: #00b3ff;
+    --accent-pink: #ff0099;
+    --dark-panel: rgba(16, 16, 44, 0.8);
+    --grid-color: rgba(0, 247, 255, 0.15);
+    --border-glow: 0 0 8px rgba(0, 247, 255, 0.6);
+    --panel-border: 1px solid var(--primary-neon);
+    --panel-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+    --text-glow: 0 0 8px rgba(0, 247, 255, 0.6);
+}
+
+/* Global styles */
+body {
+    background-color: var(--primary-bg);
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text-primary);
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* App layout */
+#app {
+    grid-template-areas: 
+        "header header header"
+        "sidebar content .";
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Header */
+.app-header {
+    background-color: var(--panel-bg);
+    border-bottom: var(--panel-border);
+    box-shadow: var(--panel-shadow);
+}
+
+.logo {
+    color: var(--primary-neon);
+    text-shadow: var(--text-glow);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+    box-shadow: var(--border-glow);
+}
+
+.main-nav a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+.main-nav a:hover {
+    color: var(--primary-neon);
+    text-shadow: var(--text-glow);
+}
+
+.main-nav a.active {
+    color: var(--primary-neon);
+    text-shadow: var(--text-glow);
+}
+
+.main-nav a.active::after {
+    background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+    box-shadow: var(--border-glow);
+}
+
+/* Cyberpunk Buttons */
+.primary-button {
+    background: linear-gradient(90deg, var(--accent-blue), var(--primary-neon));
+    color: var(--primary-bg);
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 8px 22px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+}
+
+.primary-button:hover {
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.8);
+}
+
+.primary-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-neon), transparent, var(--secondary-neon), transparent);
+    z-index: -1;
+    animation: rotate-border 4s linear infinite;
+}
+
+@keyframes rotate-border {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 300% 0%;
+    }
+}
+
+.auth-button {
+    background-color: transparent;
+    color: var(--primary-neon);
+    border: 1px solid var(--primary-neon);
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 247, 255, 0.3);
+}
+
+.auth-button:hover {
+    background-color: rgba(0, 247, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--panel-bg);
+    border-right: var(--panel-border);
+    box-shadow: var(--panel-shadow);
+    padding: 20px 16px;
+}
+
+.search-box input {
+    background-color: rgba(16, 16, 44, 0.6);
+    border: 1px solid var(--primary-neon);
+    border-radius: 4px;
+    color: var(--text-primary);
+    padding: 10px 16px;
+    box-shadow: inset 0 0 5px rgba(0, 247, 255, 0.2);
+}
+
+.search-box input:focus {
+    box-shadow: inset 0 0 8px rgba(0, 247, 255, 0.4);
+    outline: none;
+}
+
+.trending-section, .who-to-follow {
+    background-color: var(--dark-panel);
+    border: var(--panel-border);
+    border-radius: 8px;
+    box-shadow: var(--panel-shadow);
+}
+
+.trending-section h3, .who-to-follow h3 {
+    color: var(--primary-neon);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--primary-neon);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.trending-topics a {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.trending-topics a:hover {
+    color: var(--primary-neon);
+    text-shadow: var(--text-glow);
+}
+
+.follow-button {
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+    color: var(--text-primary);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 8px rgba(155, 48, 255, 0.5);
+}
+
+.follow-button:hover {
+    box-shadow: 0 0 12px rgba(155, 48, 255, 0.7);
+}
+
+/* Content area */
+.content {
+    background-color: var(--secondary-bg);
+    border-left: var(--panel-border);
+    border-right: var(--panel-border);
+}
+
+/* Compose tweet */
+.compose-tweet {
+    background-color: var(--panel-bg);
+    border-bottom: 2px solid var(--primary-neon);
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+#tweet-input {
+    background-color: rgba(16, 16, 44, 0.6);
+    color: var(--text-primary);
+    border: 1px solid var(--primary-neon);
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px rgba(0, 247, 255, 0.2);
+    padding: 12px;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+#tweet-input:focus {
+    box-shadow: inset 0 0 8px rgba(0, 247, 255, 0.4);
+    outline: none;
+}
+
+/* Tweet styles */
+.tweet {
+    background-color: var(--panel-bg);
+    border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+    padding: 20px;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+    animation: tweet-appear 0.5s forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.tweet::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary-neon), var(--secondary-neon));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tweet:hover {
+    background-color: rgba(16, 16, 44, 0.9);
+}
+
+.tweet:hover::before {
+    opacity: 1;
+}
+
+.tweet-author {
+    color: var(--primary-neon);
+    font-weight: bold;
+}
+
+.tweet-username, .tweet-time {
+    color: var(--text-secondary);
+}
+
+.tweet-body {
+    color: var(--text-primary);
+    padding: 10px 0;
+}
+
+.tweet-body a {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.tweet-body a:hover {
+    text-decoration: underline;
+    color: var(--primary-neon);
+}
+
+/* Tweet actions */
+.tweet-action {
+    color: var(--text-secondary);
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 5px 8px;
+    transition: all 0.3s ease;
+}
+
+.tweet-action:hover {
+    transform: translateY(-2px);
+}
+
+.tweet-action.reply:hover {
+    color: var(--accent-blue);
+    text-shadow: 0 0 8px rgba(0, 179, 255, 0.6);
+}
+
+.tweet-action.retweet:hover, .tweet-action.retweet.active {
+    color: #17bf63;
+    text-shadow: 0 0 8px rgba(23, 191, 99, 0.6);
+}
+
+.tweet-action.like:hover, .tweet-action.like.active {
+    color: var(--accent-pink);
+    text-shadow: 0 0 8px rgba(255, 0, 153, 0.6);
+}
+
+.tweet-action.share:hover {
+    color: var(--primary-neon);
+    text-shadow: var(--text-glow);
+}
+
+/* New tweet animation */
+.new-tweet-animation {
+    animation: cyberpunk-highlight 1.5s ease;
+}
+
+@keyframes cyberpunk-highlight {
+    0%, 100% {
+        background-color: var(--panel-bg);
+    }
+    50% {
+        background-color: rgba(0, 247, 255, 0.1);
+    }
+}
+
+/* Modals */
+.modal {
+    background-color: rgba(10, 10, 26, 0.85);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--panel-bg);
+    border: var(--panel-border);
+    border-radius: 8px;
+    box-shadow: var(--panel-shadow);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--primary-neon);
+}
+
+.modal-header h2 {
+    color: var(--primary-neon);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group label {
+    color: var(--primary-neon);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    background-color: rgba(16, 16, 44, 0.6);
+    border: 1px solid var(--primary-neon);
+    color: var(--text-primary);
+    border-radius: 4px;
+    padding: 12px;
+    box-shadow: inset 0 0 5px rgba(0, 247, 255, 0.2);
+}
+
+.form-group input:focus {
+    box-shadow: inset 0 0 8px rgba(0, 247, 255, 0.4);
+    outline: none;
+}
+
+.error-message {
+    color: var(--accent-pink);
+    text-shadow: 0 0 8px rgba(255, 0, 153, 0.4);
+}
+
+/* Notification */
+.notification {
+    background: linear-gradient(135deg, var(--panel-bg), rgba(16, 16, 44, 0.9));
+    border: 1px solid var(--primary-neon);
+    color: var(--text-primary);
+    border-radius: 4px;
+    box-shadow: var(--panel-shadow);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: notification-appear 0.3s forwards;
+    padding: 15px 24px;
+}
+
+.notification::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary-neon), var(--secondary-neon));
+}
+
+/* User avatar styling */
+.user-avatar img, .compose-avatar img, .tweet-avatar img, .suggestion-avatar img {
+    border: 2px solid var(--primary-neon);
+    box-shadow: 0 0 8px rgba(0, 247, 255, 0.4);
+    background-color: var(--panel-bg);
+}
+
+/* Dropdown */
+#user-dropdown {
+    background-color: var(--panel-bg);
+    border: var(--panel-border);
+    border-radius: 4px;
+    box-shadow: var(--panel-shadow);
+}
+
+#user-dropdown a {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+#user-dropdown a:hover {
+    background-color: rgba(0, 247, 255, 0.1);
+    color: var(--primary-neon);
+}
+
+/* Button ripple */
+.button-ripple {
+    background: rgba(0, 247, 255, 0.7);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .sidebar {
+        border-right: none;
+    }
+}
