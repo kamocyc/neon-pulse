@@ -1,3 +1,9 @@
+# AI generated twitter-like app mock
+
+by claude code (3.7 sonnet)
+
+---
+
 # NEON_PULSE - Cyberpunk Social Dashboard
 
 A futuristic cyberpunk-themed social network interface built with vanilla HTML, CSS, and JavaScript.
